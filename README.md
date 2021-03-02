@@ -1,10 +1,10 @@
 # Contextualized Rewriting for Text Summarization
 
-# ContextRewriter
+# under updating ...
 
 **This code is for AAAI 2021 paper [Contextualized Rewriting for Text Summarization](https://arxiv.org/abs/2102.00385)**
 
-Results on CNN/DailyMail (30/9/2020):
+Results of contextualized rewriter applied to four extractive summarizers on CNN/DailyMail (30/9/2020):
 
 
 <table class="tg">
