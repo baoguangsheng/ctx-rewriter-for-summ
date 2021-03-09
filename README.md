@@ -75,27 +75,19 @@ Results of contextualized rewriter applied to four extractive summarizers on CNN
 
 **Package Requirements**: torch==1.1.0 pytorch_transformers tensorboardX multiprocess pyrouge
 
-
 Some codes are borrowed from ONMT(https://github.com/OpenNMT/OpenNMT-py) and PreSumm(https://github.com/nlpyang/PreSumm).
-
-## Trained Models
-Download the zip file and extract it into ./models folder.
-[CNN/DM Extractive & Rewriter](https://drive.google.com/file/d/1xE56IheBEcLK9bY-XG6ka9iRyv5LLUNt/view)
-
-
-## Data Preparation For CNN/DM
-Download the zip file and extract it into ./bert_data folder.
-[Pre-processed data](https://drive.google.com/file/d/173_3qIV_A0pURh130dDfL-P1A4L_KFEE/view)
 
 
 ## Model Evaluation
-Contextualized rewriter can be evaluated through this experimental scripts. The Lead3, BERTSUMEXT, and BERT-Ext extractive summarizers are included.
+Contextualized rewriter can be evaluated through this experimental scripts. 
+The Lead3, BERTSUMEXT, and BERT-Ext extractive summarizers are included. 
+All the parameters and settings are hard-coded in the py file.
 ```
  python exp_varext_guidabs.py 
 ```
-* All the parameters and settings are hard-coded in the py file.
 
-The rewriter can also be easily applied to other extractive summarizer using this code:
+The rewriter can also be easily applied to other extractive summarizer using following code.
+The full example can be found in context_rewriter.py.
 ```
     rewriter = ContextRewriter(args.model_file)
 
@@ -103,7 +95,6 @@ The rewriter can also be easily applied to other extractive summarizer using thi
     ext_lines = ["georgia high school ...", "less than 24 hours ..."]
     res_lines = rewriter.rewrite(doc_lines, ext_lines)
 ```
-* As the example shown in context_rewriter.py.
     
 ## Model Training
 To be updated soon...
