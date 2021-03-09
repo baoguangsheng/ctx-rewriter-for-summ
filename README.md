@@ -2,9 +2,9 @@
 
 **This code is for AAAI 2021 paper [Contextualized Rewriting for Text Summarization](https://arxiv.org/abs/2102.00385)**
 
-Results of contextualized rewriter applied to four extractive summarizers on CNN/DailyMail (30/9/2020):
+**Results:** contextualized rewriter applied to various extractive summarizers on CNN/DailyMail (30/9/2020):
 
-
+<div style="padding-left: 30px;">
 <table class="tg">
   <tr>
     <th class="tg-0pky">Models</th>
@@ -70,6 +70,7 @@ Results of contextualized rewriter applied to four extractive summarizers on CNN
     <td class="tg-0pky">66</td>
   </tr>
 </table>
+</div>
 
 **Python version**: This code is in Python3.6
 
