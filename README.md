@@ -83,7 +83,7 @@ Contextualized rewriter can be evaluated through this experimental scripts.
 The Lead3, BERTSUMEXT, and BERT-Ext extractive summarizers are included. 
 All the parameters and settings are hard-coded in the py file.
 ```
-    python exp_varext_guidabs.py 
+    python src/exp_varext_guidabs.py 
 ```
 
 The rewriter can also be easily applied to other extractive summarizer using following code.
