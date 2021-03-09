@@ -1,8 +1,6 @@
-# Data Preparation For CNN/DM
+# Data Preparation
 
-## Pre-processed Data
-Download the [zip file](https://drive.google.com/file/d/173_3qIV_A0pURh130dDfL-P1A4L_KFEE/view) and extract it into bert_data folder.
+Download the [Pre-processed CNN/DM](https://drive.google.com/file/d/173_3qIV_A0pURh130dDfL-P1A4L_KFEE/view) and extract it into bert_data folder.
 
-
-## Data Pre-processing
-To be updated soon ...
+Or you can pre-process the data by yourself following below steps.
+Steps: To be updated soon ...
