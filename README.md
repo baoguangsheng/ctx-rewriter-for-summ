@@ -2,7 +2,15 @@
 
 **This code is for AAAI 2021 paper [Contextualized Rewriting for Text Summarization](https://arxiv.org/abs/2102.00385)**
 
-**Results:** Contextualized rewriter applied to various extractive summarizers on CNN/DailyMail (30/9/2020):
+**Python Version**: This code is in Python3.6
+
+**Package Requirements**: torch==1.1.0 pytorch_transformers tensorboardX multiprocess pyrouge
+
+Some codes are borrowed from [ONMT](https://github.com/OpenNMT/OpenNMT-py) and [PreSumm](https://github.com/nlpyang/PreSumm).
+
+
+## Evaluation Results
+Contextualized rewriter applied to various extractive summarizers on CNN/DailyMail (30/9/2020):
     
 <table class="tg"  style="padding-left: 30px;">
   <tr>
@@ -69,13 +77,6 @@
     <td class="tg-0pky">66</td>
   </tr>
 </table>
-
-**Python version**: This code is in Python3.6
-
-**Package Requirements**: torch==1.1.0 pytorch_transformers tensorboardX multiprocess pyrouge
-
-Some codes are borrowed from ONMT(https://github.com/OpenNMT/OpenNMT-py) and PreSumm(https://github.com/nlpyang/PreSumm).
-
 
 ## Model Evaluation
 Contextualized rewriter can be evaluated through this experimental scripts. 
