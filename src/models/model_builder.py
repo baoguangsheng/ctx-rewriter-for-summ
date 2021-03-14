@@ -103,21 +103,12 @@ def build_optim_dec(args, model, checkpoint):
 
 
 def get_generator(args, vocab_size, dec_hidden_size, gen_weight=None):
-    if args.dec_projection:
-        generator = nn.Sequential(
-            nn.Linear(dec_hidden_size, dec_hidden_size, bias=False),
-            nn.Linear(dec_hidden_size, vocab_size),
-            nn.LogSoftmax(dim=-1)
-        )
-        if gen_weight is not None:
-            generator[1].weight = gen_weight
-    else:
-        generator = nn.Sequential(
-            nn.Linear(dec_hidden_size, vocab_size),
-            nn.LogSoftmax(dim=-1)
-        )
-        if gen_weight is not None:
-            generator[0].weight = gen_weight
+    generator = nn.Sequential(
+        nn.Linear(dec_hidden_size, vocab_size),
+        nn.LogSoftmax(dim=-1)
+    )
+    if gen_weight is not None:
+        generator[0].weight = gen_weight
 
     return generator
 
@@ -174,21 +165,16 @@ class ExtSummarizer(nn.Module):
         return sent_scores, mask_cls
 
 class TiedEmbedding(nn.Embedding):
-    def __init__(self, num_embeddings, embedding_dim, padding_idx=None, tied=True,
+    def __init__(self, num_embeddings, embedding_dim, padding_idx=None,
                  max_norm=None, norm_type=2., scale_grad_by_freq=False,
                  sparse=False, _weight=None):
-        self.tied = tied
-        super(TiedEmbedding, self).__init__(2 if self.tied else num_embeddings, embedding_dim, padding_idx,
+        super(TiedEmbedding, self).__init__(num_embeddings, embedding_dim, padding_idx,
              max_norm, norm_type, scale_grad_by_freq, sparse, _weight)
 
     def forward(self, input):
-        if self.tied:
-            input = (input > 0).long()
         return super(TiedEmbedding, self).forward(input)
 
     def matmul(self, tags):
-        if self.tied:
-            tags = (torch.sum(tags, dim=2, keepdim=True) > 0).float()
         return tags.matmul(self.weight[1:1 + tags.size(2)])
 
 class AbsSummarizer(nn.Module):
@@ -206,7 +192,7 @@ class AbsSummarizer(nn.Module):
             self.bert.model.embeddings.position_embeddings = my_pos_embeddings
 
         # guide-tags
-        self.tag_embeddings = TiedEmbedding(args.max_n_tags, self.bert.model.config.hidden_size, padding_idx=0, tied=args.tag_tied)
+        self.tag_embeddings = TiedEmbedding(args.max_n_tags, self.bert.model.config.hidden_size, padding_idx=0)
         self.tag_drop = nn.Dropout(args.tag_dropout)
 
         # decoder
@@ -244,7 +230,7 @@ class AbsSummarizer(nn.Module):
 
         self.to(device)
 
-    def forward(self, src, tgt, segs, clss, mask_src, mask_tgt, mask_cls, tag_src, tag_tgt, exfea_src):
+    def forward(self, src, tgt, segs, clss, mask_src, mask_tgt, mask_cls, tag_src, tag_tgt):
         segs_src = (1 - segs % 2) * mask_src.long()
         top_vec = self.bert(src, segs_src, mask_src)
         if self.training and self.args.sent_dropout > 0:

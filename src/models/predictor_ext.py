@@ -211,7 +211,6 @@ class Translator(object):
         segs = batch.segs
         mask_src = batch.mask_src
         tag_src = batch.tag_src
-        exfea_src = batch.exfea_src
 
         src_features = self.model.forward_enc(src, segs, mask_src)
         dec_states = self.model.ext_decoder.init_decoder_state(src, src_features, with_cache=True)

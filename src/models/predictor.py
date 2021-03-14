@@ -233,7 +233,6 @@ class Translator(object):
         segs = batch.segs
         mask_src = batch.mask_src
         tag_src = batch.tag_src
-        # exfea_src = batch.exfea_src
 
         segs_src = (1 - segs % 2) * mask_src.long()
         src_features = self.model.bert(src, segs_src, mask_src)

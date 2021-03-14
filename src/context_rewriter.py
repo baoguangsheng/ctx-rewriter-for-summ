@@ -120,8 +120,6 @@ class ContextRewriter:
         parser.add_argument("-tag_dropout", default=0.2, type=float)
         parser.add_argument("-word_dropout", default=0.3, type=float)
         parser.add_argument("-sent_dropout", default=0.2, type=float)
-        parser.add_argument("-dec_projection", default=False, type=bool)
-        parser.add_argument("-tag_tied", default=False, type=bool)
         parser.add_argument('-max_src_ntokens_per_sent', default=200, type=int)
         parser.add_argument('-max_src_nsents', default=100, type=int)
 

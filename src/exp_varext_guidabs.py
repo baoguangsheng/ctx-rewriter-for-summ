@@ -272,8 +272,6 @@ class GuidAbsHandler:
         parser.add_argument("-tag_dropout", default=0.2, type=float)
         parser.add_argument("-word_dropout", default=0.3, type=float)
         parser.add_argument("-sent_dropout", default=0.2, type=float)
-        parser.add_argument("-dec_projection", default=False, type=bool)
-        parser.add_argument("-tag_tied", default=False, type=bool)
 
         args = parser.parse_args('')
         args.gpu_ranks = [int(i) for i in range(len(args.visible_gpus.split(',')))]
@@ -315,7 +313,6 @@ class GuidAbsHandler:
 
         logger.info('Generating Ext/GuidAbs results %s ...' % args.result_path)
         avg_f1 = test_ext_abs(logger, args, extractor, predictor, 0, step_abs, test_iter, quick_test=quick_test)
-        # extractor.trainer.test(test_iter, step_abs)
         return avg_f1
 
 if __name__ == "__main__":

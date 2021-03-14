@@ -103,21 +103,12 @@ def build_optim_dec(args, model, checkpoint):
 
 
 def get_generator(args, vocab_size, dec_hidden_size, gen_weight=None):
-    if args.dec_projection:
-        generator = nn.Sequential(
-            nn.Linear(dec_hidden_size, dec_hidden_size, bias=False),
-            nn.Linear(dec_hidden_size, vocab_size),
-            nn.LogSoftmax(dim=-1)
-        )
-        if gen_weight is not None:
-            generator[1].weight = gen_weight
-    else:
-        generator = nn.Sequential(
-            nn.Linear(dec_hidden_size, vocab_size),
-            nn.LogSoftmax(dim=-1)
-        )
-        if gen_weight is not None:
-            generator[0].weight = gen_weight
+    generator = nn.Sequential(
+        nn.Linear(dec_hidden_size, vocab_size),
+        nn.LogSoftmax(dim=-1)
+    )
+    if gen_weight is not None:
+        generator[0].weight = gen_weight
 
     return generator
 #

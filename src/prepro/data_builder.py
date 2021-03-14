@@ -121,7 +121,6 @@ def _extend_to_guidabs(params, scorer=None):
         abs_art_idx = np.argmax(abs_art_scores, axis=1)
         assert abs_art_scores.shape[0] == len(unused_ids)
         assert abs_art_scores.shape[1] == len(cls_ids)
-        # abs_art_idx = [idx for idx, val in enumerate(sent_labels) if val > 0]
 
         # generate guide tags for each summary sentence
         src_tags = np.zeros((len(src_subtoken_idxs), len(abs_art_idx)), dtype=np.int)
@@ -160,13 +159,7 @@ if __name__ == '__main__':
     parser.add_argument('-max_src_ntokens_per_sent', default=200, type=int)
     parser.add_argument('-max_src_nsents', default=100, type=int)
     parser.add_argument('-max_tgt_ntokens', default=500, type=int)
-    parser.add_argument('-visible_gpus', default='1', type=str)
-    parser.add_argument('-gpu_ranks', default='0', type=str)
     args = parser.parse_args()
-
-    args.gpu_ranks = [int(i) for i in range(len(args.visible_gpus.split(',')))]
-    args.world_size = len(args.gpu_ranks)
-    os.environ["CUDA_VISIBLE_DEVICES"] = args.visible_gpus
 
     logging.basicConfig(level=logging.INFO, filename=args.log_file, format="[%(asctime)s %(levelname)s] %(message)s")
     console_handler = logging.StreamHandler()

@@ -4,4 +4,9 @@ Download the [pre-processed CNN/DM](https://drive.google.com/file/d/173_3qIV_A0p
 
 Or you can pre-process the data by yourself following below steps.
 
-Steps: To be updated soon ...
+Steps: 
+1) Following [PreSumm](https://github.com/nlpyang/PreSumm) for preparing initial data and put it into folder ./source_bert_data.
+2) Run the command to convert ./source_bert_data to ./bert_data:
+```
+    python src/prepro/data_builder.py
+``` 
