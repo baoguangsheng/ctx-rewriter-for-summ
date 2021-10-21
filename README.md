@@ -1,6 +1,6 @@
 # ContextRewriter
 
-**This code is for AAAI 2021 paper [Contextualized Rewriting for Text Summarization](https://arxiv.org/abs/2102.00385)**
+**This code is for AAAI 2021 paper [Contextualized Rewriting for Text Summarization](https://ojs.aaai.org/index.php/AAAI/article/view/17487)**
 
 **Python Version**: Python3.6
 
